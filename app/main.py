@@ -1,8 +1,7 @@
 from fastapi import FastAPI
+from app.routers import scrape
 
-app = FastAPI()
+app = FastAPI(title="Correspondence")
 
-@app.get("scrape_new")
-async def scrape()
-
+app.include_router(scrape.router)
 

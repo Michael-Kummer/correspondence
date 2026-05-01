@@ -5,8 +5,10 @@ __pycache__/
 
 # Files
 .env
-app/services/images
 
+outputs/images
+app/services/images
+app/services/__pycache__/
 # C extensions
 *.so
 

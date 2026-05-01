@@ -5,6 +5,7 @@ import os
 from urllib.parse import urlparse
 import sys
 import csv
+from dotenv import load_dotenv
 
 """
 Downloader script for my correspondence project. 
@@ -13,16 +14,19 @@ Interacts with publically available API's
 
 timestamp = datetime.datetime.now().strftime("%Y-%m-%d")
 DEBUG = True
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+OUTPUT_DIR = os.path.join(BASE_DIR, "outputs", "images")
+LOG_FILE = os.path.join(BASE_DIR, "outputs", "post_log.csv")
+
+load_dotenv(os.path.join(BASE_DIR, ".env"))
+
 REDDIT = {
     "subreddit_posts": "https://www.reddit.com/r/{subreddit}/{sort}.json?limit=100",
     "search": "https://www.reddit.com/r/{subreddit}/search.json?q={query}&restrict_sr=on&type=link",
-    "target_subreddits": [
-    "texts", "badfaketexts", "goodfaketexts", "creepyPMs",
-    "Tinder", "niceguys", "nicegirls", 
-    "textfails", "TextingTheory"
-            ]
-        }
-LOG_FILE = "post_log.csv"
+    "target_subreddits": [s.strip() for s in os.environ["TARGET_SUBREDDITS"].split(",") if s.strip()],
+}
+
 headers = {"User-Agent": "correspondence/1.0"}
 
 def load_seen():
@@ -110,7 +114,7 @@ def extract_image_urls(post):
 
     return urls
 
-def download_images(image_list, output_dir="images"):
+def download_images(image_list, output_dir=OUTPUT_DIR):
     os.makedirs(output_dir, exist_ok=True)
     seen = load_seen()
     new_count = 0
@@ -133,11 +137,11 @@ def download_images(image_list, output_dir="images"):
         time.sleep(0.5)
     return
 
-def main():
-    mode = sys.argv[1] if len(sys.argv) > 1 else "new"
+def main(mode: str = "new"):
     urls = fetchurls(sort=mode)
     download_images(urls)
     return
 
 if __name__=="__main__":
-    main()
+    mode = sys.argv[1] if len(sys.argv) > 1 else "new"
+    main(mode)
