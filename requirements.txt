@@ -1,0 +1,4 @@
+fastapi[standard]
+minio
+python-dotenv
+requests
