@@ -9,10 +9,27 @@ Stack:
 - Ollama (Hosts LightOnOCR-2)
 
 ### Usage
-
+#### Scrape new subreddits
 ```Bash
 curl -X POST localhost:8000/scrape-new
 ```
+
+#### Get files
+```Bash
+curl localhost:8000/storage/get-files
+
+```
+
+#### Upload to S3 todays scrapes
+```Bash
+curl -X POST http://localhost:8000/storage/upload-today
+```
+
+#### Upload to S3 scrapes from a dfiferent day
+```Bash
+curl -X POST http://localhost:8000/storage/upload-today
+```
+
 
 downloader.py
 Downloads all the images to an images folder

@@ -1,11 +1,11 @@
+from urllib.parse import urlparse
+from dotenv import load_dotenv
 import requests
 import datetime
 import time
 import os
-from urllib.parse import urlparse
 import sys
 import csv
-from dotenv import load_dotenv
 import logging
 
 """
@@ -19,8 +19,8 @@ DEBUG = True
 logger = logging.getLogger(__name__)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-OUTPUT_DIR = os.path.join(BASE_DIR, "outputs", "images")
-LOG_FILE = os.path.join(BASE_DIR, "outputs", "post_log.csv")
+OUTPUT_DIR = os.path.join(BASE_DIR, "outputs", timestamp, "images")
+LOG_FILE = os.path.join(BASE_DIR, "outputs", timestamp, "post_log.csv")
 
 load_dotenv(os.path.join(BASE_DIR, ".env"))
 
