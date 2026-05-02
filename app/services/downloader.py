@@ -6,6 +6,7 @@ from urllib.parse import urlparse
 import sys
 import csv
 from dotenv import load_dotenv
+import logging
 
 """
 Downloader script for my correspondence project. 
@@ -14,6 +15,8 @@ Interacts with publically available API's
 
 timestamp = datetime.datetime.now().strftime("%Y-%m-%d")
 DEBUG = True
+
+logger = logging.getLogger(__name__)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUTPUT_DIR = os.path.join(BASE_DIR, "outputs", "images")

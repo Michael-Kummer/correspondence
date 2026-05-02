@@ -2,6 +2,7 @@ from minio import Minio
 from minio.error import S3Error
 from dotenv import load_dotenv
 import os
+import logging
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 load_dotenv(os.path.join(BASE_DIR, ".env"))
@@ -9,7 +10,7 @@ vm_ip = os.environ["GARAGE_IP_PORT"]
 key_id = os.environ["GARAGE_API_KEY_ID"]
 api_key = os.environ["GARAGE_API_KEY"]
 
-
+logger = logging.getLogger(__name__)
 
 def clean():
 

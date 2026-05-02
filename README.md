@@ -1,6 +1,6 @@
 # Correspondence
-A chess themed OCR based pipeline to analyze images of texts that I have on my home server.
-The code can be used, but it requires a local ollama instance for analyzing and a local/cloud object storage. 
+A handbuilt chess themed OCR based pipeline I created to analyze conversations that I host on my homeserver. This was built so I can familiarize myself with the stack and I think trying to identify LLM language appropriateness is a fun side project.
+The code can be used, but it requires a local ollama instance for analyzing and a local/cloud object storage.
 
 Stack:
 - FastAPI
