@@ -1,0 +1,32 @@
+Extract this text conversation screenshot into JSON. Output ONLY valid JSON, nothing else.
+
+SENDERS:
+- p1 = screenshot owner. In bubble layouts (iMessage, WhatsApp, etc.), p1's messages are RIGHT-aligned or distinctly colored (blue/green in iMessage). In stacked layouts (Discord, Reddit, Slack), identify from logged-in user indicators.
+- p2 = the other person. In bubble layouts, p2's messages are LEFT-aligned (gray in iMessage). Group chats: p3, p4, etc.
+- These rules apply equally to images and media — a photo on the LEFT is from p2, on the RIGHT is from p1. A download icon on an image means it was RECEIVED, not sent.
+
+ATTRIBUTION:
+- Use position AND conversational context together. If someone sends a photo and the next message comments on or reacts to that photo, they are the same sender. Multiple consecutive messages from one person is normal — do not force alternation.
+
+ELEMENTS:
+- "message": must have "sender" and at least "text" or "media" or both. Optional fields (include only when visible): "time", "reply_to" (quoted text), "reactions" (array).
+- "date_separator": platform date/time dividers. Has "content" only.
+- "system": app-generated messages (missed calls, etc.). Has "content" only.
+
+RULES:
+- Preserve exact text: typos, slang, emoji, capitalization, line breaks.
+- Describe any visible images/media in the "media" field.
+- Only include fields that are visible. Do not invent timestamps or reactions.
+
+{
+  "platform": "",
+  "conversation": [
+    {"type": "message", "sender": "p1", "text": "look at this", "media": "Photo of a dog on a couch"},
+    {"type": "message", "sender": "p1", "text": "he's been like that all day lmao"},
+    {"type": "message", "sender": "p2", "text": "omg hahaha 😭", "reactions": ["Loved by p1"]},
+    {"type": "message", "sender": "p2", "text": "come out tonight"},
+    {"type": "message", "sender": "p2", "text": "bring your roommate"},
+    {"type": "system", "content": "Missed audio call from p2"},
+    {"type": "message", "sender": "p1", "text": "bet omw", "time": "2:30 PM"}
+  ]
+}

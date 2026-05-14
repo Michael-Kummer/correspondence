@@ -1,5 +1,5 @@
 # Correspondence
-A handbuilt chess themed OCR based pipeline I created to rank conversations online and assign ELO to participants. This was built so I can familiarize myself with the stack and I think trying to identify language appropriateness is a fun side project.
+A handbuilt chess themed OCR based pipeline I created to rank conversations online and assign ELO to participants. This was built so I can familiarize myself with the stack and I think trying to identify language appropriateness is a fun side project - especially when you try to pinpoint why the model is saying what it says.
 The code is free to be used elsewhere. It requires a local ollama instance for converting images to text, a local Postgresdb for storing said text, and a local/cloud object storage for storing raw images of texts.
 
 ELO and texting performance:
@@ -29,9 +29,9 @@ curl localhost:8000/storage/get-files
 curl -X POST http://localhost:8000/storage/upload-today
 ```
 
-#### Upload to S3 scrapes from a dfiferent day
+#### Upload to S3 scrapes from a different day YYYY-MM-DD
 ```Bash
-curl -X POST http://localhost:8000/storage/upload-today
+curl -X POST http://localhost:8000/storage/2026-12-25
 ```
 
 ### Object Storage CLI Expamples

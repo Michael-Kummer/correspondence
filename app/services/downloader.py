@@ -15,6 +15,7 @@ Interacts with publically available API's
 
 timestamp = datetime.datetime.now().strftime("%Y-%m-%d")
 DEBUG = True
+#DEBUG = False
 
 logger = logging.getLogger(__name__)
 
@@ -137,7 +138,7 @@ def download_images(image_list, output_dir=OUTPUT_DIR):
             new_count += 1
 
     if not DEBUG:
-        time.sleep(0.5)
+        time.sleep(0.25)
     return
 
 def main(mode: str = "new"):

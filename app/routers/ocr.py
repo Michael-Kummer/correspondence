@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.services import downloader
+from app.services import extractor
 import logging
 
 logging = logging.getLogger(__name__)
@@ -7,12 +7,6 @@ logging = logging.getLogger(__name__)
 router = APIRouter(prefix="/scrape", tags=["scraper"])
 
 @router.post("/new")
-def scrape_new():
-    downloader.main("new")
+def extract(filename):
+    extractor.main("new")
     return
-
-@router.post("/top")
-def scrape_top():
-    downloader.main("top")
-    return
-
